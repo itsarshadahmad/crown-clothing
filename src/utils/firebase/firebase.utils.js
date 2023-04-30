@@ -21,7 +21,6 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
@@ -43,7 +42,6 @@ export const createUserDocumentFromAuth = async (
 	if (!userAuth) return;
 
 	const userDocRef = doc(db, "users", userAuth.uid);
-
 	const userSnapshot = await getDoc(userDocRef);
 
 	if (!userSnapshot.exists()) {
@@ -61,19 +59,16 @@ export const createUserDocumentFromAuth = async (
 			console.log("error creating the user", error.message);
 		}
 	}
-
 	return userDocRef;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) return;
-
 	return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) return;
-
 	return await signInWithEmailAndPassword(auth, email, password);
 };
 
